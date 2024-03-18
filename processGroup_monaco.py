@@ -37,7 +37,7 @@ if debug:
     logging.getLogger().setLevel(logging.DEBUG)
 
 logging.info("="*200)
-logging.info("Running %s ", " ".join(item if not "--token" in item else item for item in sys.argv))
+logging.info("Running %s ", " ".join(sys.argv))
 logging.info("="*200)
 
 for t in sys.argv:
