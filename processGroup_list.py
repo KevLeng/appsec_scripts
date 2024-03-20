@@ -50,7 +50,7 @@ processTypes = "JAVA"
 dynatraceApi = DynatraceApi(env, apiToken, verifySSL)
 
 def getSelectorURL():
-    # split the list into chunks of 100 in order to avoid too large requests (URI too long)
+
     url = "/api/v2/entities?pageSize=500&entitySelector=type(PROCESS_GROUP)"
     url += f",softwareTechnologies({processTypes})"
 
