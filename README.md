@@ -9,18 +9,38 @@
 - Dynatrace API Token with Read Entities (`entities.read`) and Read Security Problems (`securityProblems.read`) scope (for *processes_reporting_libraries.py* `DataExport` and `events.read` are required as well) 
 
 ## Available scripts
-- [Export Vulnerabilities](#export_vulnerabilitiespy)
-  - Exports a list of all vulnerabilities to a CSV file
-- [Software Components for Process Group Instance](#softwareComponents4pgipy)
-  - Retrieves all software components (libraries) for a specific process group instance
-- [Libraries grouped by host and process](#libraries_by_hostpy)
-  - Exports all libraries (optionally with vulnberabilities) grouped by host and process to a CSV
-- [Vulnerabilities grouped by host and process](#vulnerabilities_by_hostpy)
-  - Exports all  vulnerabilities grouped by host and process to a CSV
-- [Processes reporting libraries ](#processes_reporting_librariespy)
-  - Generates a list of all processes that are reporting software components and exports to a CSV
--  [attack_details](#attack_detailspy)
-  - Exports a list of all attacks with details about the impacted container
+- [Python scripts to export useful information using the Dynatrace APIs](#python-scripts-to-export-useful-information-using-the-dynatrace-apis)
+  - [Prerequisits](#prerequisits)
+  - [Available scripts](#available-scripts)
+  - [Usage](#usage)
+    - [export\_vulnerabilities.py](#export_vulnerabilitiespy)
+      - [Arguments](#arguments)
+      - [Examples](#examples)
+    - [export\_vulnerabilities\_by\_pg.py](#export_vulnerabilities_by_pgpy)
+      - [Arguments](#arguments-1)
+      - [Examples](#examples-1)
+    - [softwareComponents4pgi.py](#softwarecomponents4pgipy)
+      - [Arguments](#arguments-2)
+      - [Examples](#examples-2)
+    - [libraries\_by\_host.py](#libraries_by_hostpy)
+      - [Arguments](#arguments-3)
+      - [Examples](#examples-3)
+    - [vulnerabilities\_by\_host.py](#vulnerabilities_by_hostpy)
+      - [Arguments](#arguments-4)
+      - [Examples](#examples-4)
+    - [processes\_reporting\_libraries.py](#processes_reporting_librariespy)
+      - [Arguments](#arguments-5)
+      - [Examples](#examples-5)
+    - [softwareComponents.py](#softwarecomponentspy)
+      - [Arguments](#arguments-6)
+      - [Examples](#examples-6)
+    - [attack\_details.py](#attack_detailspy)
+      - [Arguments](#arguments-7)
+      - [Examples](#examples-7)
+  - [Logging](#logging)
+  - [Additional parameters](#additional-parameters)
+    - [Skip SSL certificate validation](#skip-ssl-certificate-validation)
+    - [Set log level to DEBUG](#set-log-level-to-debug)
 
 ## Usage
 
@@ -43,6 +63,27 @@ python3 export_vulnerabilities.py -e https://xxxyyyyy.live.dynatrace.com -t dt0c
 Additionaly fetch details for each vulnerability
 ```bash
 python3 export_vulnerabilities.py -e https://xxxyyyyy.live.dynatrace.com -t dt0c01.XXX... -d
+```
+
+### [export_vulnerabilities_by_pg.py](export_vulnerabilities_by_pg.py)
+exports all vulnerabilites, grouped by PG, to a CSV file
+
+Required token scope: Read security problems (`securityProblems.read`)
+
+#### Arguments
+```
+-e ENVIRONMENT, --env ENVIRONMENT   The Dynatrace Environment to use (e.g. https://xxxyyyyy.live.dynatrace.com)                    
+-t TOKEN, --token TOKEN             The Dynatrace API Token to use (e.g. dt0c01.XXX...)                  
+-d, --details                       Fetch the details for each security problem (takes longer)
+```
+
+#### Examples
+```bash
+python3 export_vulnerabilities_by_pg.py -e https://xxxyyyyy.live.dynatrace.com -t dt0c01.XXX... 
+```
+Additionaly fetch details for each vulnerability
+```bash
+python3 export_vulnerabilities_by_pg.py -e https://xxxyyyyy.live.dynatrace.com -t dt0c01.XXX... -d
 ```
 
 ### [softwareComponents4pgi.py](softwareComponents4pgi.py)

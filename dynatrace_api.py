@@ -51,6 +51,20 @@ class DynatraceApi:
         makes subsequent calls to the API if the results are paged.
         """
         return self.__querySecurityProblems('/api/v2/securityProblems?pageSize=500')
+    
+    def getThirdPartySecurityProblems(self):
+        """
+        get a list of all security problems from the specified environment
+        makes subsequent calls to the API if the results are paged.
+        """
+        return self.__querySecurityProblems('/api/v2/securityProblems?securityProblemSelector=vulnerabilityType%28%22THIRD_PARTY%22%29&pageSize=500')
+    
+    def getRemediationItems(self, securityProblem):
+        """
+        get a list of all security problems from the specified environment
+        makes subsequent calls to the API if the results are paged.
+        """
+        return self.queryApi('/api/v2/securityProblems/'+securityProblem["securityProblemId"]+'/remediationItems')['remediationItems']
    
     
     @lru_cache(maxsize=None)
