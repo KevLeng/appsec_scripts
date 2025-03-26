@@ -5,3 +5,5 @@ env/
 *.json
 output.log
 *test.py
+.logs
+monaco*
