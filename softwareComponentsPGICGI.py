@@ -51,7 +51,7 @@ def getData(loadFromFile, api, filename):
         return result
         
 
-loadDataFromFiles = True
+loadDataFromFiles = False
 
 softwareComponents = getData(loadDataFromFiles, '/api/v2/entities?fields=+properties.softwareComponentType,+properties.packageName,+properties.softwareComponentVersion,+fromRelationships.isSoftwareComponentOfPgi&pageSize=500&entitySelector=type(SOFTWARE_COMPONENT)', 'softwareComponents.json')
 #softwareComponents = dynatraceApi.getAllEntities('/api/v2/entities?fields=+properties.softwareComponentType,+properties.packageName,+properties.softwareComponentVersion,+fromRelationships.isSoftwareComponentOfPgi&pageSize=500&entitySelector=type(SOFTWARE_COMPONENT),entityId(SOFTWARE_COMPONENT-00282CEED2E6A288)')
@@ -135,7 +135,6 @@ for component in softwareComponents:
                 masterList.append(copy.deepcopy(listEntry))
                 #print(f"masterList {masterList}")
                 break
-    break
 
 
 print(f"The length masterList {len(masterList)}")
