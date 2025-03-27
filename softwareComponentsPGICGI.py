@@ -127,16 +127,22 @@ for component in softwareComponents:
                     if not foundContainer:
                         print(f"unable to find container {relContainer.get('id')} for process {relProcessGroupInstance.get('id')} software {component.get('id')}")
 
-                    listEntry['ContainerGroupInstance_displayName'] = cgidisplayName
+                    #listEntry['ContainerGroupInstance_displayName'] = cgidisplayName
                     listEntry['containerImageName'] = containerImageName
+
+
                 #print(f"PGI display name 2 {pgidisplayName}")
-                listEntry['ProcessGroupInstance_displayName'] = pgidisplayName
+                #listEntry['ProcessGroupInstance_displayName'] = pgidisplayName
                 #print(f"listEntry {listEntry}")
                 masterList.append(copy.deepcopy(listEntry))
                 #print(f"masterList {masterList}")
                 break
+        if not foundPGI:
+            print(f"unable to find process {relProcessGroupInstance.get('id')} software {component.get('id')}")
+    print('.', end="", flush=True) # print a dot for every software component to show activity
 
 
-print(f"The length masterList {len(masterList)}")
+
+print(f"The length masterList {len(masterList)} before deduplication")
 
 writeResultToFile('softwareComponent_PGI_CGI.csv', masterList)
